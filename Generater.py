@@ -5,6 +5,7 @@ import json
 import itertools
 from collections import Counter
 import base64
+import os
 
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -12,8 +13,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 def culculate_op(data: dict) -> list:
 
-    # cwd = os.path.dirname(os.path.abspath(__file__))
-    cwd = "./ArtifacterImageGen"
+    cwd = os.path.dirname(os.path.abspath(__file__))
 
     with codecs.open(f'{cwd}/Assets/duplicate.json', 'r', encoding='utf-8') as f:
         dup = json.load(f)
@@ -167,7 +167,7 @@ def culculate_op(data: dict) -> list:
     return
 
 
-def generation(data: dict) -> str:
+def generation(data: dict):
     # config
     element = data.get('元素')
 
@@ -196,8 +196,8 @@ def generation(data: dict) -> str:
 
     ArtifactsData: dict = data.get('Artifacts')
 
-    # cwd = os.path.dirname(os.path.abspath(__file__))
-    cwd = "./ArtifacterImageGen"
+    cwd = os.path.dirname(os.path.abspath(__file__))
+
 
     def config_font(size): return ImageFont.truetype(
         f'{cwd}/Assets/ja-jp.ttf', size)
@@ -651,11 +651,11 @@ def generation(data: dict) -> str:
     #        Base.paste(badge,(1843-i*45,533),mask=badge_mask)
 
     # Base.show()
-    # Base.save(f'{cwd}/Tests/Image.png')
+
 
     buffer = BytesIO()
-    Base.save(buffer, "png")
-    return buffer
+    Base.save(buffer,"png")
+    return buffer.getvalue()
     # return pil_to_base64(Base,format='png')
 
 
@@ -665,7 +665,7 @@ def read_json(path) -> dict:
     return data
 
 
-def pil_to_base64(img, format="jpeg") -> str:
+def pil_to_base64(img, format="jpeg"):
     buffer = BytesIO()
     img.save(buffer, format)
     img_str = base64.b64encode(buffer.getvalue()).decode("ascii")
@@ -673,4 +673,5 @@ def pil_to_base64(img, format="jpeg") -> str:
     return img_str
 
 
-generation(read_json('data.json'))
+def test():
+    return generation(read_json('data.json'))
