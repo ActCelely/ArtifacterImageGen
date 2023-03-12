@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from Generater import test
+from io import BytesIO
 
 import os
 from dotenv import load_dotenv
@@ -19,8 +20,11 @@ async def on_ready():
 @bot.command()
 async def c(ctx):
     img = test()
-    file = discord.File(img)
-    await ctx.send(file = file)
+    with BytesIO() as buffer:
+        img.save(buffer, "png")
+        buffer.seek(0)
+        file = discord.File(buffer, "image.png")
+        await ctx.send(file = file)
 
 
 bot.run(token = TOKEN)

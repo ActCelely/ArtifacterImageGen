@@ -175,7 +175,7 @@ def read_json(path):
 
 
 def generation(data):
-    # config 
+    # config
     element = data.get('元素')
 
     character_data: dict = data.get('Character')
@@ -437,8 +437,8 @@ def generation(data):
             mainvsize = drew_base.textlength(f'{float(mainv)}%', config_font(49))
             drew_base.text((375 + i * 373 - mainvsize, 690), f'{float(mainv)}%', font=config_font(49))
         else:
-            mainvsize = drew_base.textlength(format(mainv, ", "), config_font(49))
-            drew_base.text((375 + i * 373 - mainvsize, 690), format(mainv, ", "), font=config_font(49))
+            mainvsize = drew_base.textlength(format(mainv,","),config_font(49))
+            drew_base.text((375 + i * 373 - mainvsize, 690),format(mainv, ","), font = config_font(49))
         level_len = drew_base.textlength(f'+{details["Level"]}', config_font(21))
         drew_base.rounded_rectangle((373 + i * 373 - int(level_len), 748, 375 + i * 373, 771), fill='black', radius=2)
         drew_base.text((374 + i * 373 - level_len, 749), f'+{details["Level"]}', font=config_font(21))
@@ -470,12 +470,12 @@ def generation(data):
                 sub_size = drew_base.textlength(f'{float(sub_val)}%', config_font(25))
                 drew_base.text((375 + i * 373 - sub_size, 811 + 50 * a), f'{float(sub_val)}%', font=config_font(25))
             else:
-                sub_size = drew_base.textlength(format(sub_val, ", "), config_font(25))
+                sub_size = drew_base.textlength(format(sub_val, ","), config_font(25))
                 if sub_op in ['防御力', '攻撃力', 'HP']:
-                    drew_base.text((375 + i * 373 - sub_size, 811 + 50 * a), format(sub_val, ", "), font=config_font(25),
+                    drew_base.text((375 + i * 373 - sub_size, 811 + 50 * a), format(sub_val, ","), font=config_font(25),
                                    fill=(255, 255, 255, 190))
                 else:
-                    drew_base.text((375 + i * 373 - sub_size, 811 + 50 * a), format(sub_val, ", "), font=config_font(25),
+                    drew_base.text((375 + i * 373 - sub_size, 811 + 50 * a), format(sub_val, ","), font=config_font(25),
                                    fill=(255, 255, 255))
 
             if details['Level'] == 20 and details['rarelity'] == 5:
@@ -555,10 +555,8 @@ def generation(data):
 
             base_image.paste(badge, (1843 - i * 45, 533), mask=badge_mask)
 
-    base_image.show()
-    base_image.save(f'{cwd}/Tests/Image.png')
+    return base_image
 
-    return pil_to_base64(base_image, format='png')
 
 
 def pil_to_base64(img, format="jpeg"):
@@ -569,4 +567,5 @@ def pil_to_base64(img, format="jpeg"):
     return img_str
 
 
-generation(read_json('data.json'))
+def test():
+    return generation(read_json('data.json'))
