@@ -36,10 +36,10 @@ class get_data():
 
         character_info = p_data["showAvatarInfoList"]
 
-        for number,c in enumerate(character_info):
-            character_name = n_json[c_json[c["avatarId"]]]
+        for c in character_info:
+            character_name = n_json[str(c_json[str(c["avatarId"])]["nameTextMapHash"])]
 
-            character_info[number]["avatarId"] = character_name
+            c["avatarId"] = character_name
 
         return character_info
 
@@ -90,7 +90,7 @@ class uid_modal(discord.ui.Modal):
         # プロフィール
         player_info = resp["playerInfo"]
 
-        embed = discord.Embed(description= player_info["signature"])
+        embed = discord.Embed(description= player_info["signature"], color= discord.Colour.orange())
         embed.set_author(name = player_info["nickname"])
         embed.add_field(name = "螺旋",
                         value= str(player_info["towerFloorIndex"]) + "層 " + str(player_info["towerLevelIndex"]) + "間"
@@ -98,10 +98,21 @@ class uid_modal(discord.ui.Modal):
         embed.add_field(name = "アチーブメント",
                         value = player_info["finishAchievementNum"]
         )
-        embed.set_thumbnail(url = "")
+        level = player_info["level"]
+        world_level = player_info["worldLevel"]
+        embed.set_footer(text = f"冒険者ランク{level}・世界ランク{world_level}")
+
+        card_id = player_info["nameCardId"]
+        name_card = card_json[str(card_id)]["icon"]
+
+        ch_name = player_info["profilePicture"]["avatarId"]
+        character = c_json[str(ch_name)]["iconName"]
+
+        embed.set_thumbnail(url = create_img_url(character))
+        embed.set_image(url = create_img_url(name_card))
 
 
-        await ctx.edit_original_response(content = None, embed=embed)# , view=player_info_view(data = resp, inter = ctx)
+        await ctx.edit_original_response(content = None, embed=embed, view=player_info_view(data = resp, inter = ctx))#
 
 
 # キャラ選択
@@ -113,11 +124,11 @@ class character_select(discord.ui.Select):
         names = get_data.character_names(p_data)
         options = []
 
-        for number, c in enumerate(names):
+        for c in names:
             options.append(discord.SelectOption(
                 label=c["avatarId"],
                 description="Lv" + str(c["level"]),
-                value=str(p_data["showAvatarInfoList"][number]["avatarId"])
+                value=str(c["avatarId"])
             ))
 
         super().__init__(
