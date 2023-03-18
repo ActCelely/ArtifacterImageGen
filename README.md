@@ -23,7 +23,7 @@ Discord BOTのTOKENを取得
 pip install -r requirements.txt
 ```
 
-`main.py`と同じディレクトリに`.env`ファイルを作り
+`main.py`と同じディレクトリに`.env`ファイルの
 ```
 TOKEN = "Your Discord BOT token"
 ```
