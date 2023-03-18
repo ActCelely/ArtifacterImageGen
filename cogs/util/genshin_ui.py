@@ -127,7 +127,7 @@ def create_img_url(name: str):
 class uid_modal(discord.ui.Modal):
     def __init__(self, member_id : int,*args, **kwargs) -> None:
 
-        with open("data.json", 'r', encoding='utf-8') as json_open:
+        with open("uid.json", 'r', encoding='utf-8') as json_open:
             data = json.load(json_open)
         uid = data.get(str(member_id))
 
