@@ -21,10 +21,6 @@ def culculate_op(data: dict):
     is_dup = []
     # 重複するものがあるか判定
     for ctg, state in data.items():
-        if ctg == "攻撃力パーセンテージ":
-            ctg = "攻撃パーセンテージ"
-        elif ctg == "防御力パーセンテージ":
-            ctg = "防御パーセンテージ"
         dup_value = dup[ctg]['ov']
         if str(state) in dup_value:
             is_dup.append((ctg, state))
