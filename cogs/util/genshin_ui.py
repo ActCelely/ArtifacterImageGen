@@ -121,17 +121,22 @@ def create_img_url(name: str):
     return f"https://enka.network/ui/{name}.png"
 
 
-
 ###################################################
 # UI
 
 class uid_modal(discord.ui.Modal):
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, member_id : int,*args, **kwargs) -> None:
+
+        with open("data.json", 'r', encoding='utf-8') as json_open:
+            data = json.load(json_open)
+        uid = data.get(str(member_id))
+
         super().__init__(
             discord.ui.InputText(label="UIDを入力してください/INPUT GENSHIN UID",
                                  min_length=9,
                                  max_length=9,
-                                 style=discord.InputTextStyle.short
+                                 style=discord.InputTextStyle.short,
+                                 value=uid
                                  ),
             *args,
             **kwargs,
@@ -144,6 +149,15 @@ class uid_modal(discord.ui.Modal):
             int(self.children[0].value)
         except BaseException:
             return await ctx.response.send_message("UIDは数字でなければいけません", ephemeral=True)
+
+        # UID書き込み
+        with open("uid.json", 'r', encoding='utf-8') as json_open:
+            data = json.load(json_open)
+
+        data[str(ctx.user.id)] = uid
+
+        with open("uid.json", "w", encoding = "utf-8") as json_write:
+            json.dump(data, json_write, ensure_ascii = False, indent = 4)
 
         await ctx.response.send_message("プレイヤー情報を取得中...")
 

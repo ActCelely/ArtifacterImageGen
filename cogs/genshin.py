@@ -9,7 +9,7 @@ class genshin(commands.Cog):
 
     @discord.slash_command(name="build", description="UIDからキャラクタービルドカードを生成できます。")
     async def build(self, ctx: discord.ApplicationContext):
-        await ctx.response.send_modal(uid_modal(title="UID入力"))
+        await ctx.response.send_modal(uid_modal(member_id = ctx.author.id, title = "UID入力"))
 
 
 def setup(bot: commands.Bot):
