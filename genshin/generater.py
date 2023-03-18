@@ -7,14 +7,14 @@ from collections import Counter
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
+cwd = os.path.dirname(os.path.abspath(__file__))
+with codecs.open(f'{cwd}/Assets/duplicate.json', 'r', encoding='utf-8') as f:
+    dup = json.load(f)
+with codecs.open(f'{cwd}/Assets/subopM.json', 'r', encoding='utf-8') as f:
+    mapping = json.load(f)
+
 
 def culculate_op(data: dict):
-    cwd = os.path.dirname(os.path.abspath(__file__))
-    with codecs.open(f'{cwd}/Assets/duplicate.json', 'r', encoding='utf-8') as f:
-        dup = json.load(f)
-    with codecs.open(f'{cwd}/Assets/subopM.json', 'r', encoding='utf-8') as f:
-        mapping = json.load(f)
-
     res = [None, None, None, None]
     keymap = list(map(str, data.keys()))
 
