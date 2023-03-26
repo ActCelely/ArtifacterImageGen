@@ -1,9 +1,12 @@
 # Genshin Artifacter
 
 これは[Genshin Artifacter BOT](https://github.com/FuroBath/ArtifacterImageGen)の再現版です。
+<br>Hyugoさんによると「画像のデザインのテンプレートコードを今後公開する」とのことなので
+<br>それに合わせて更新していく予定です。
+<br>
+<br>
+<br>
 <br>`/party`コマンドは実装を検討中です。
-<br>
-<br>
 
 # 動作環境
 
