@@ -1,7 +1,7 @@
 # Genshin Artifacter
 
 これは[Genshin Artifacter BOT](https://github.com/FuroBath/ArtifacterImageGen)の再現版です。
-<br>Hyugoさんによると「画像のデザインのテンプレートコードを今後公開する」とのことなので
+<br>Hyugoさんによると「画像のデザインのテンプレートコードを今後公開する」とのことなので、
 <br>それに合わせて更新していく予定です。
 <br>
 <br>
@@ -47,7 +47,7 @@ artifacterとほぼ同じ仕様です。
 # 使用させていただいてるもの
 [Genshin Artifacter BOTの画像生成](https://github.com/FuroBath/ArtifacterImageGen)
 <br>[Enka Network](https://enka.network/)
-<br>[Kuroneko ServerのGenshin API](https://support.kuroneko6423.com/)
+<br>[Kuroneko ServerのGenshin API](https://support.kuroneko6423.com/)（いずれこれが無くても使えるようにする）
 
 
 # LICENSE
