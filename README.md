@@ -4,7 +4,8 @@
 <br>Hyugoさんによると「画像のデザインのテンプレートコードを今後公開する」とのことなので、
 <br>それに合わせて更新していく予定です。
 <br>
-<br>
+<br>__**py-cordなので注意してください**__
+<br>discord.py版は[こちら](https://github.com/celely-discord-bot/Genshin-Artifacter-BOT-dpy)
 <br>
 <br>`/party`コマンドは実装を検討中です。
 
