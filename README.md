@@ -6,8 +6,6 @@
 <br>
 <br>__**py-cordなので注意してください**__
 <br>discord.py版は[こちら](https://github.com/celely-discord-bot/Genshin-Artifacter-BOT-dpy)
-<br>
-<br>`/party`コマンドは実装を検討中です。
 
 # 動作環境
 
